@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.Toastify__toast--success {
+  background: #f8f9fa;
+  color: green
+}
+
+.Toastify__close-button--success {
+  color: green;
+}
+
+.Toastify__progress-bar--success {
+  background-color: green;
+}
+
+.Toastify__toast--error {
+  background: #f8f9fa;
+  color: red
+}
+
+.Toastify__close-button--error {
+  color: #dc3545;
+}
+
+.Toastify__progress-bar--error {
+  background-color: #dc3545;
+}
+

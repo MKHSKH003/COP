@@ -47,7 +47,7 @@ namespace COP
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<ILoginService, LoginService>();
-
+            services.AddCors();
             services.AddMvc(options =>
             {
                 options.OutputFormatters.Clear();
@@ -71,8 +71,11 @@ namespace COP
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -84,6 +87,9 @@ namespace COP
 
             app.UseHttpsRedirection();
 
+            app.UseCors(
+                options => options.WithOrigins("http://localhost:3000").AllowAnyMethod()
+            );
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

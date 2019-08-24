@@ -1,18 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import '@patternfly/react-core/dist/styles/base.css'
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
+import { ToastContainer } from 'react-toastify';
 
-import configureStore from './store';
-import './index.css';
-import App from './components/login/components/page/container';
+import Routes from './root/routes';
 import { register } from './serviceWorker';
 
 ReactDOM.render(
- <Provider store={configureStore()}>
-  <App />
- </Provider>,
+ <div>
+  <Routes />
+  <ToastContainer />
+ </div>,
  document.getElementById('root')
 );
 register();
