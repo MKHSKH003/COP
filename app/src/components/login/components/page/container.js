@@ -16,6 +16,7 @@ export default () => {
         onSuccess: user => {
             if(user===null) throw Error;
             toast.success("Logged in successfully");
+            localStorage.setItem("userName", user.Name);
         },
         onError: () => toast.error("Incorrect login details")
     }, []);

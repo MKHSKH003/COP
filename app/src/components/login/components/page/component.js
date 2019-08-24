@@ -28,8 +28,9 @@ export const SignIn = ({
   );
 
   return (
-    onUserLogin.data === null
-    || onUserLogin.data.length == 0 && (onUserSignup.data.length == 0 || onUserSignup.data.user == null) 
+    onUserLogin.inProgress || onUserSignup.inProgress
+    || onUserLogin.data == null 
+    || onUserLogin.data.length == 0 && onUserSignup.data.length == 0
     ? <LoginPage
         footerListVariants="inline"
         brandImgSrc={brandImg}
@@ -48,7 +49,7 @@ export const SignIn = ({
           : <SignUpForm onUserSignup={onUserSignup} />
         }
       </LoginPage>
-      : <Feeds />
+      : <Feeds userName={onUserLogin.data.Name}/>
   );
 }
 

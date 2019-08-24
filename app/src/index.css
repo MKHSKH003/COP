@@ -14,27 +14,27 @@ code {
 
 .Toastify__toast--success {
   background: #f8f9fa;
-  color: green
+  color: #486B00
 }
 
 .Toastify__close-button--success {
-  color: green;
+  color: #486B00;
 }
 
 .Toastify__progress-bar--success {
-  background-color: green;
+  background-color: #92D400;
 }
 
 .Toastify__toast--error {
   background: #f8f9fa;
-  color: red
+  color: #470000
 }
 
 .Toastify__close-button--error {
-  color: #dc3545;
+  color: #470000;
 }
 
 .Toastify__progress-bar--error {
-  background-color: #dc3545;
+  background-color: #C9190B;
 }
 
