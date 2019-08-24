@@ -1,16 +1,40 @@
-import { connect } from 'react-redux'
+import React from 'react';
+import { toast } from 'react-toastify';
 
-import component from './component'
-import { loginRequest } from '../../actions'
+import useApi from '../../../../shared/components/react-use-api'; 
 
-const mapStateToProps = state => ({
-    ...state
-})
+import { loginApi } from '../../../../api';
+import { loginBaseUrl } from '../../../../shared/constants/api-selectors'
 
-const mapDispatchToProps = dispatch => ({
-    userLogin: () => dispatch(loginRequest()),
-    userSignup: (name, email, password) => console.log('user-sign', name, email, password)
-})
+import SignIn from './component';
 
-export default connect(mapStateToProps,mapDispatchToProps)(component)
+export default () => {
+    const login = useApi({
+        action: loginDetails => loginApi.login(loginBaseUrl, loginDetails.username, loginDetails.password),
+        initialValue: [],
+        defer: true,
+        onSuccess: user => {
+            if(user===null) throw Error;
+            toast.success("Logged in successfully");
+        },
+        onError: () => toast.error("Incorrect login details")
+    }, []);
+    
+    const signup = useApi({
+        action: signupDetails => loginApi.signup(loginBaseUrl, signupDetails.name, signupDetails.email, signupDetails.password),
+        initialValue: [],
+        defer: true,
+        onSuccess: userSignup => {
+            if(userSignup.user == null) throw Error(userSignup.message);
+            toast.success("Signed up successfully");
+        },
+        onError: (e) => toast.error(e.message)
+    }, []);
 
+    return ( 
+        <SignIn  
+            onUserLogin={login} 
+            onUserSignup={signup}
+        />
+    );
+};

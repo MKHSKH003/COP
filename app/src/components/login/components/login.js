@@ -1,49 +1,50 @@
-import './login.css';
+import React, {useState } from 'react';
+import {
+  Form,
+  FormGroup,
+  TextInput,
+  Button
+} from '@patternfly/react-core';
+import { Spinner } from "react-bootstrap"
 
-import React, { useState } from 'react'
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
-
-export const Login = ({
-  userLogin
+export const LoginForm = ({
+    onUserLogin
 }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-  const handleChange = event => {
-    event.target.id == 'email' ? setEmail(event.target.value) : setPassword(event.target.value)
-  }
-
-  const validateForm = () => {
-    return email.length > 0 && password.length > 0;
-  }
-
-  return (
-    <div className="Login">
-      <form onSubmit={console.log('handleSubmit', email, password)}>
-        <FormGroup controlId="email" bsSize="large">
-          <FormLabel>Email</FormLabel>
-          <FormControl
-            autoFocus
-            type="email"
+    return (
+      <Form >  
+        <FormGroup label="Email" isRequired fieldId="email">
+          <TextInput
             value={email}
-            onChange={handleChange}
+            onChange={(value) => setEmail(value)}
+            isRequired
+            type="email"
+            id="email"
+            name="email"
           />
         </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <FormLabel>Password</FormLabel>
-          <FormControl
+        <FormGroup label="Password" isRequired fieldId="password">
+          <TextInput
             value={password}
-            onChange={handleChange}
+            onChange={(value) => setPassword(value)}
+            isRequired
             type="password"
+            id="password"
+            name="password"
           />
         </FormGroup>
-        <Button block variant="outline-primary" bsSize="large" disabled={!validateForm()}
-          type="submit" >
-          Login
-          </Button>
-      </form>
-    </div>
-  );
-}
 
-export default Login;
+        <Button 
+            variant={onUserLogin.inProgress ? 'link' : 'primary'} 
+            icon={onUserLogin.inProgress && <Spinner animation="border" variant="primary" />} 
+            isDisabled={!email || !password} 
+            onClick={() => onUserLogin.execute({'username': email, 'password': password})}>
+            Login
+        </Button>
+      </Form>
+    );
+};
+
+export default LoginForm;
