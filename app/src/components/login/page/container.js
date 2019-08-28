@@ -1,10 +1,10 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import useApi from '../../../../shared/components/react-use-api'; 
+import useApi from '../../../shared/components/react-use-api'; 
 
-import { loginApi } from '../../../../api';
-import { loginBaseUrl } from '../../../../shared/constants/api-selectors'
+import { loginApi } from '../../../api';
+import { loginBaseUrl } from '../../../shared/constants/api-selectors'
 
 import SignIn from './component';
 
@@ -16,6 +16,7 @@ export default () => {
         onSuccess: user => {
             if(user===null) throw Error;
             toast.success("Logged in successfully");
+            localStorage.setItem("userName", user.Name);
         },
         onError: () => toast.error("Incorrect login details")
     }, []);
