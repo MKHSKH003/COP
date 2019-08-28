@@ -6,6 +6,8 @@
     "@patternfly/react-core": "^3.87.3",
     "@patternfly/react-icons": "^3.10.18",
     "bootstrap": "^4.3.1",
+    "firebase": "^6.4.2",
+    "google-maps-react": "^2.0.2",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.11",
     "react-dom": "^16.9.0",
@@ -37,5 +39,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "FirebaseConfig": {
+    "apiKey": "AIzaSyD5S9lilEvIAq2PT8yGO-a2z6mtL2-r9Lc",
+    "authDomain": "csinvestment-9960f.firebaseapp.com",
+    "databaseURL": "https://csinvestment-9960f.firebaseio.com",
+    "projectId": "csinvestment-9960f",
+    "storageBucket": "csinvestment-9960f.appspot.com",
+    "messagingSenderId": "222752105548"
   }
 }

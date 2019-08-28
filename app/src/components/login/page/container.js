@@ -1,10 +1,10 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import useApi from '../../../../shared/components/react-use-api'; 
+import useApi from '../../../shared/components/react-use-api'; 
 
-import { loginApi } from '../../../../api';
-import { loginBaseUrl } from '../../../../shared/constants/api-selectors'
+import { loginApi } from '../../../api';
+import { loginBaseUrl } from '../../../shared/constants/api-selectors'
 
 import SignIn from './component';
 

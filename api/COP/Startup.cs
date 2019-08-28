@@ -88,7 +88,7 @@ namespace COP
             app.UseHttpsRedirection();
 
             app.UseCors(
-                options => options.WithOrigins("http://localhost:3000").AllowAnyMethod()
+                options => options.WithOrigins("http://localhost:8000","http://localhost:3000").AllowAnyMethod()
             );
             app.UseMvc();
             app.UseSwagger();

@@ -1,0 +1,51 @@
+.image-backgroud {
+    border-width: 1px;
+    border-color: red;
+    border-style: solid;
+    height: 10rem;
+}
+
+
+.ids-input {
+    display: flex;
+}
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.button {
+  height: 18rem;
+  width: 25rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0px 2px 5px #dfdfdf;
+  transition: all 1s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  box-shadow: 0px 10px 10px #dfdfdf;
+  color: red;
+  transform: translateY(-1px);
+  opacity: 0.8;
+}
+
+.input input {
+    width: auto;
+    font-size: initial;
+}
