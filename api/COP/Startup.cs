@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using COP.Models.Configuration;
 using COP.Services.Login;
+using COP.Services.Organisation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -47,6 +48,7 @@ namespace COP
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IOrganisationService, OrganisationService>();
             services.AddCors();
             services.AddMvc(options =>
             {

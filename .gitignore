@@ -1,3 +1,5 @@
 /api/COP/.vs
 /api/COP/appsettings.json
 /api/.vs
+/api/COP/bin
+/api/COP/obj
