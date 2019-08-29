@@ -4,7 +4,7 @@ import {
   LoginMainFooterBandItem,
   LoginPage
 } from '@patternfly/react-core';
-import Feeds from '../../feeds/page/component';
+import Feeds from '../../events/page/component';
 
 import brandImg from '../../../shared/utils/logo/full.png';
 import images from '../../../shared/utils/patternfly-bg-images'
