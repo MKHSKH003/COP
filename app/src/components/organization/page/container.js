@@ -3,26 +3,27 @@ import { toast } from 'react-toastify';
 
 import useApi from '../../../shared/components/react-use-api'; 
 
-import { loginApi } from '../../../api';
-import { loginBaseUrl } from '../../../shared/constants/api-selectors'
+import { organizationApi } from '../../../api';
+import { organizationBaseUrl } from '../../../shared/constants/api-selectors'
 
-import SignIn from './component';
+import Organization from './component';
 
 export default () => {
     const postOrganization = useApi({
-        action: organization => organizationApi.postOrganization(loginBaseUrl, organization),
+        action: organization => organizationApi.postOrganization(organizationBaseUrl, organization),
         initialValue: [],
         defer: true,
-        onSuccess: user => {
+        onSuccess: organization => {
              
         },
-        onError: () => toast.error("Incorrect login details")
+        onError: () => toast.error("Something went wrong!")
     }, []);
     
 
     return ( 
-        <SignIn  
+        <Organization  
             onAddOrganization={postOrganization} 
+            userNames={'userName'}
         />
     );
 };

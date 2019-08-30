@@ -1,5 +1,7 @@
-import * as loginApi from './loginApi';
+import * as loginApi from './login';
+import * as organizationApi from './organization';
 
 export {
-    loginApi
+    loginApi,
+    organizationApi
 }

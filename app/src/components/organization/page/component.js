@@ -10,9 +10,11 @@ import NavBar from '../../../shared/components/navbar/page/component'
 import Modal from '../wizard/page/component'
 
 export default ({
-  userName
+  userName,
+  onAddOrganization
 }) => {
-
+ 
+  console.log('userName, onAddOrganization', userName, onAddOrganization);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
@@ -24,7 +26,8 @@ export default ({
             <Modal 
               modalheader={'Add Organization'}
               isModalVisible={isModalVisible}
-              setIsModalVisible={setIsModalVisible} 
+              setIsModalVisible={setIsModalVisible}
+              onAddOrganization={onAddOrganization}
             /> 
           </CardBody>
         </Card>

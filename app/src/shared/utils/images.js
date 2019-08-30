@@ -17,7 +17,7 @@ export const  readImageURL = (input, object, setObjectImage) => {
         var reader = new FileReader();
         reader.onload = () => setObjectImage({
           ...object,
-          image: reader.result
+          avatar: reader.result
         })
         reader.readAsDataURL(input.files[0]);
     }

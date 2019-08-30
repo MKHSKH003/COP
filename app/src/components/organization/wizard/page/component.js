@@ -10,20 +10,23 @@ import Map from '../google-maps/map'
 export default ({
     modalheader,
     isModalVisible,
-    setIsModalVisible
+    setIsModalVisible,
+    onAddOrganization
 }) => {
+
+    
     const [ organization, setOrganization ] = useState({
-      image:'http://www.pngall.com/wp-content/uploads/2/Upload-PNG-Image-File.png',
+      avatar:'http://www.pngall.com/wp-content/uploads/2/Upload-PNG-Image-File.png',
       name:'',
       email:'',
-      indurstry:'',
+      socialIssue:'',
       description:'',
       location:''
     })
     const uploadAvatar = (
         <label  className="wrap button">
             <input id='mail-upload' className="wrap button" type="file"  onChange={ file => readImageURL(file.target, organization, setOrganization)} />
-            <img src={organization.image} className="wrap button" />
+            <img src={organization.avatar} className="wrap button" />
         </label>
     )
 
@@ -44,6 +47,11 @@ export default ({
           title="Add Organization"
           description="Please fill in organization details in each step."
           steps={steps}
+          onSave={() => {
+              onAddOrganization.execute(organization);
+              setIsModalVisible(false)
+            }
+          }
         />
       </React.Fragment>
     );

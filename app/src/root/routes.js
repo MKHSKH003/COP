@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import PrivateRoute from './PrivateRoute'
 import Login from '../components/login/page/container';
 import Events from '../components/events/page/component';
-import Organizations from "../components/organization/page/component";
+import Organizations from "../components/organization/page/container";
 
 const AppRouter = () => {
   return (
