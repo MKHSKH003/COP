@@ -38,8 +38,7 @@ namespace COP.scafold
 
                 entity.Property(e => e.Avatar)
                     .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                    .HasColumnType("blob");
 
                 entity.Property(e => e.Description)
                     .IsRequired()

@@ -56,7 +56,7 @@ namespace COP.Entities
 
                 entity.Property(e => e.Avatar)
                     .IsRequired()
-                    .HasMaxLength(255)
+                    .HasMaxLength(500)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Description)

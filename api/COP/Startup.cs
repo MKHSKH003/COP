@@ -61,6 +61,7 @@ namespace COP
 
             services.AddSwaggerGen(c =>
             {
+                c.CustomSchemaIds(x => x.FullName);
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "1.0.0",
@@ -90,7 +91,9 @@ namespace COP
             app.UseHttpsRedirection();
 
             app.UseCors(
-                options => options.WithOrigins("http://localhost:8000","http://localhost:3000").AllowAnyMethod()
+                options => options.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
             );
             app.UseMvc();
             app.UseSwagger();

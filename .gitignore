@@ -3,3 +3,4 @@
 /api/.vs
 /api/COP/bin
 /api/COP/obj
+/app/*.log

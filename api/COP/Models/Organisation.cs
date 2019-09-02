@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace COP.Models
 {
-    public class Organisations
+    public partial class Organisation
     {
         public string Avatar { get; set; }
         public string Name { get; set; }

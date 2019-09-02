@@ -3,25 +3,39 @@ import { toast } from 'react-toastify';
 
 import useApi from '../../../shared/components/react-use-api'; 
 
-import { loginApi } from '../../../api';
-import { loginBaseUrl } from '../../../shared/constants/api-selectors'
+import { organizationApi } from '../../../api';
+import { organizationBaseUrl } from '../../../shared/constants/api-selectors'
 
-import SignIn from './component';
+import Organization from './component';
 
-export default () => {
+export default ({
+    isAdmin,
+    isAddOrganizationVisible,
+    setAddOrgarnizationToggle
+}) => {
+    const getOrganizations = useApi({
+        action: () => organizationApi.getOrganizations(organizationBaseUrl),
+        initialValue: [],
+        onError: (e) => toast.error(e.message)
+    }, []);
+
     const postOrganization = useApi({
-        action: organization => organizationApi.postOrganization(loginBaseUrl, organization),
+        action: organization => organizationApi.postOrganization(organizationBaseUrl, organization),
         initialValue: [],
         defer: true,
-        onSuccess: user => {
-             
+        onSuccess: organization => {
+             getOrganizations.setData(getOrganizations.data.concat(organization));
+             toast.success('Organization '+organization.Name+' was successfully added');
         },
-        onError: () => toast.error("Incorrect login details")
+        onError: (e) => toast.error(e.message)
     }, []);
     
-
     return ( 
-        <SignIn  
+        <Organization  
+            isAdmin
+            isAddOrganizationVisible={isAddOrganizationVisible}
+            setAddOrgarnizationToggle={setAddOrgarnizationToggle}
+            getOrganizations={getOrganizations}
             onAddOrganization={postOrganization} 
         />
     );

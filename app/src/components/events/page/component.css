@@ -8,6 +8,7 @@
 
 .pf-c-card {
     width: 70vw;
+    box-shadow: none
 }
 
 .pf-c-card__head:not(:last-child), .pf-c-card__header:not(:last-child) {
@@ -18,4 +19,8 @@
 .pf-c-page__header-nav {
     display: flex;
     justify-content: flex-end;
+}
+
+.pf-l-bullseye {
+    justify-content: space-evenly
 }

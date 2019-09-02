@@ -1,0 +1,7 @@
+.pf-c-nav__horizontal-list {
+    overflow: visible !important;
+}
+
+.pf-c-dropdown__toggle {
+    padding: unset !important
+}

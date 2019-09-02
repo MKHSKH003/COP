@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 const useApi = (task, deps) => {
     const [data, setData] = useState(task.initialValue);
-    const [inProgress, setInProgress] = useState(task.defer == false || task.condition == true);
+    const [inProgress, setInProgress] = useState(task.defer === false || task.condition === true);
     const [isError, setIsError] = useState(false);
 
     const execute = async (params = null) => {

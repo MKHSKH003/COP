@@ -1,3 +1,16 @@
 .pf-c-wizard__main {
     position: sticky
 }
+
+/*
+.maps {
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+}
+
+.MuiTypography-paragraph.maps {
+    max-width: 5rem;
+    max-height: 5rem
+}
+*/

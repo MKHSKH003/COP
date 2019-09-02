@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace COP.Services.Organisation
 {
     public interface IOrganisationService
     {
-        Entities.Organisation AddOrganisation(Models.Organisations organisation);
+        Entities.Organisation AddOrganisation(Models.Organisation organisation);
+        IEnumerable<Entities.Organisation> Get();
     }
 }

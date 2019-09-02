@@ -2,6 +2,7 @@
 using COP.Models;
 using COP.Services.Organisation;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace COP.Controllers
 {
@@ -15,8 +16,13 @@ namespace COP.Controllers
             _organisationService = organisationService;
         }
 
-        [HttpPost]
-        public ActionResult<Entities.Organisation> AddOrganisation(Models.Organisations organisation)
+        [HttpGet]
+        public IEnumerable<Entities.Organisation> Get()
+        {
+            return _organisationService.Get();
+        }
+        [HttpPost("add-organisation")]
+        public ActionResult<Entities.Organisation> AddOrganisation(Models.Organisation organisation)
         {
             return _organisationService.AddOrganisation(organisation);
         }

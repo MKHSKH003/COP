@@ -4,13 +4,8 @@ import {
   FormGroup,
   TextInput,
   TextArea,
-  FormSelectionOption,
   FormSelectOption,
-  FormSelect,
-  Checkbox,
-  ActionGroup,
-  Button,
-  Radio
+  FormSelect
 } from '@patternfly/react-core';
 
 export default ({
@@ -18,7 +13,7 @@ export default ({
   setOrganization
 }) => {
     const options = [
-      { value: 'select industry', label: 'Select industry', disabled: false },
+      { value: 'select social issue', label: 'Select social issue', disabled: false },
       { value: 'Motor', label: 'Motor', disabled: false },
       { value: 'Sport', label: 'Sport', disabled: false },
       { value: 'Finance', label: 'Finance', disabled: false },
@@ -61,12 +56,12 @@ export default ({
             name="horizontal-form-email"
           />
         </FormGroup>
-        <FormGroup label="Industry" fieldId="horizontal-form-title">
+        <FormGroup label="Social Issue" fieldId="horizontal-form-title">
           <FormSelect
-            value={organization.industry}
+            value={organization.socialIssue}
             onChange={value => setOrganization({
               ...organization, 
-              industry: value
+              socialIssue: value
             })}
             id="horzontal-form-title"
             name="horizontal-form-title"
@@ -87,16 +82,6 @@ export default ({
             id="horizontal-form-exp"
           />
         </FormGroup>
-        <FormGroup>
-          <Checkbox label="Follow up via email" id="alt-form-checkbox-1" name="alt-form-checkbox-1" />
-        </FormGroup>
-        <FormGroup>
-          <Checkbox label="Remember my password for 30 days" id="alt-form-checkbox-2" name="alt-form-checkbox-2" />
-        </FormGroup>
-        <ActionGroup>
-          <Button variant="primary">Submit form</Button>
-          <Button variant="secondary">Cancel</Button>
-        </ActionGroup>
       </Form>
     );
 }

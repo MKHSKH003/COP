@@ -15,7 +15,12 @@ namespace COP.Services.Organisation
             _copDbContext = copDbContext;
         }
 
-        public Entities.Organisation AddOrganisation(Models.Organisations organisation)
+        public IEnumerable<Entities.Organisation> Get()
+        {
+            return _copDbContext.Organisation;
+        }
+
+        public Entities.Organisation AddOrganisation(Models.Organisation organisation)
         {
             var dbNewOrganization = new Entities.Organisation()
             {

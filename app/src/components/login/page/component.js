@@ -10,6 +10,7 @@ import brandImg from '../../../shared/utils/logo/full.png';
 import images from '../../../shared/utils/patternfly-bg-images'
 import SignUpForm from '../signup'
 import LoginForm from '../login'
+import PageWrapper from '../../../shared/components/page-wrapper/page/component'
 
 export const SignIn = ({
   onUserLogin,
@@ -29,8 +30,8 @@ export const SignIn = ({
 
   const isLoggedIn = onUserLogin.inProgress 
                     || onUserSignup.inProgress
-                    || onUserLogin.data == null 
-                    || onUserLogin.data.length == 0 && onUserSignup.data.length == 0
+                    || onUserLogin.data === null 
+                    || (onUserLogin.data.length === 0 && onUserSignup.data.length === 0)
 
   return (
         isLoggedIn
@@ -51,7 +52,7 @@ export const SignIn = ({
             : <SignUpForm onUserSignup={onUserSignup} />
           }
         </LoginPage>
-      : <Feeds userName={onUserLogin.data.Name}/>
+      : <PageWrapper userName={onUserLogin.data.Name}/>
   );
 }
 
