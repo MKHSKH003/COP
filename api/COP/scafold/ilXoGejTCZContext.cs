@@ -15,7 +15,7 @@ namespace COP.scafold
         {
         }
 
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Organisation> Organisation { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,17 +28,31 @@ namespace COP.scafold
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Organisation>(entity =>
             {
-                entity.ToTable("User", "ilXoGejTCZ");
+                entity.ToTable("Organisation", "ilXoGejTCZ");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Email)
+                entity.Property(e => e.Avatar)
+                    .IsRequired()
+                    .HasColumnType("blob");
+
+                entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Location)
+                    .IsRequired()
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -46,7 +60,7 @@ namespace COP.scafold
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Password)
+                entity.Property(e => e.SocialIssue)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);

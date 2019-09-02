@@ -10,6 +10,7 @@ import brandImg from '../../../shared/utils/logo/full.png';
 import images from '../../../shared/utils/patternfly-bg-images'
 import SignUpForm from '../signup'
 import LoginForm from '../login'
+import PageWrapper from '../../../shared/components/page-wrapper/page/component'
 
 export const SignIn = ({
   onUserLogin,
@@ -29,8 +30,8 @@ export const SignIn = ({
 
   const isLoggedIn = onUserLogin.inProgress 
                     || onUserSignup.inProgress
-                    || onUserLogin.data == null 
-                    || onUserLogin.data.length == 0 && onUserSignup.data.length == 0
+                    || onUserLogin.data === null 
+                    || (onUserLogin.data.length === 0 && onUserSignup.data.length === 0)
 
   return (
         isLoggedIn
@@ -41,8 +42,7 @@ export const SignIn = ({
             backgroundImgSrc={images}
             backgroundImgAlt="Images"
             textContent="
-            This is placeholder text only. Use this area to place any information or introductory message about your
-            application that may be relevant to users."
+            This is a community organisation portal for Cape Town based organisations to upload a profile of what they do and social issues they work on"
             loginTitle={loginToggle ? 'Log in to your account' : 'Create an account'}
             loginSubtitle="Please use your email as username"
             signUpForAccountMessage={signUpForAccountMessage}
@@ -52,7 +52,7 @@ export const SignIn = ({
             : <SignUpForm onUserSignup={onUserSignup} />
           }
         </LoginPage>
-      : <Feeds userName={onUserLogin.data.Name}/>
+      : <PageWrapper userName={onUserLogin.data.Name}/>
   );
 }
 

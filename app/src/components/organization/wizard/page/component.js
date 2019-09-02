@@ -1,20 +1,20 @@
 import './component.css'
 
 import React, { useState } from 'react'
-import { Modal, Button, Wizard } from '@patternfly/react-core'
+import { Wizard } from '@patternfly/react-core'
 
-import { readImageURL } from '../../../../shared/utils/images'
+import { readImageURL, uploadAndGetImageUrl } from '../../../../shared/utils/images'
 import OrganizationForm from '../organization-form'
 import Map from '../google-maps/map'
 
 export default ({
     modalheader,
-    isModalVisible,
-    setIsModalVisible,
+    setWizardVisible,
+    setInProgress,
+    isAddOrganizationVisible,
+    setAddOrgarnizationToggle,
     onAddOrganization
 }) => {
-
-    
     const [ organization, setOrganization ] = useState({
       avatar:'http://www.pngall.com/wp-content/uploads/2/Upload-PNG-Image-File.png',
       name:'',
@@ -25,8 +25,11 @@ export default ({
     })
     const uploadAvatar = (
         <label  className="wrap button">
-            <input id='mail-upload' className="wrap button" type="file"  onChange={ file => readImageURL(file.target, organization, setOrganization)} />
-            <img src={organization.avatar} className="wrap button" />
+            <input id='mail-upload' className="wrap button" type="file"  onChange={ file => {
+                readImageURL(file.target, organization, setOrganization)
+              }}
+            />
+            <img alt='COP-avatar' src={organization.avatar} className="wrap button" />
         </label>
     )
 
@@ -39,17 +42,18 @@ export default ({
       { name: `Location: ${organization.location}`, component: <Map organization={organization} setOrganization={setOrganization} /> , nextButtonText: 'Finish' }
     ];
 
+
     return (
       <React.Fragment>
         <Wizard
-          isOpen={isModalVisible}
-          onClose={ () => isModalVisible ? setIsModalVisible(false) : setIsModalVisible(false)}
+          isOpen={isAddOrganizationVisible}
+          onClose={() => setAddOrgarnizationToggle(false)}
           title="Add Organization"
           description="Please fill in organization details in each step."
           steps={steps}
           onSave={() => {
-              onAddOrganization.execute(organization);
-              setIsModalVisible(false)
+              uploadAndGetImageUrl(organization, onAddOrganization, setInProgress);
+              setAddOrgarnizationToggle(false)
             }
           }
         />

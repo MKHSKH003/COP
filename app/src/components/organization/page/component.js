@@ -1,39 +1,46 @@
+import './component.css'
 
 import React, { useState } from 'react';
 import {
   Page, PageSection, PageSectionVariants,
-  Card, CardBody,
+  Card, CardBody
 } from '@patternfly/react-core';
 
 import CardHeader from '../../../shared/components/card-header'
-import NavBar from '../../../shared/components/navbar/page/component'
-import Modal from '../wizard/page/component'
+import Spinner from '../../../shared/components/spinner/component'
+import Wizard from '../wizard/page/component'
+import OrganizationCard from '../organization-card/page/component'
 
 export default ({
-  userName,
+  isAdmin,
+  isAddOrganizationVisible,
+  setAddOrgarnizationToggle,
+  getOrganizations,
   onAddOrganization
 }) => {
- 
-  console.log('userName, onAddOrganization', userName, onAddOrganization);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
 
   return (
-  <Page  header={<NavBar userName={userName} />} sidebar={''}>
-      <PageSection  variant={PageSectionVariants.light}>
+    <Spinner
+      isLoading={inProgress || onAddOrganization.inProgress}
+      text='Loading organizations...'
+    >
+      <PageSection variant={PageSectionVariants.light}>
         <Card className='mx-auto' >
-          <CardHeader title={'Organizations'} addTitle={'New Organization'} setIsModalVisible={setIsModalVisible} />
           <CardBody >
-            <Modal 
+            {getOrganizations.data.map((organization, key) =>
+              <OrganizationCard key={key} organization={organization} />
+            )}
+            <Wizard
               modalheader={'Add Organization'}
-              isModalVisible={isModalVisible}
-              setIsModalVisible={setIsModalVisible}
+              isAddOrganizationVisible={isAddOrganizationVisible}
+              setAddOrgarnizationToggle={setAddOrgarnizationToggle}
+              setInProgress={setInProgress}
               onAddOrganization={onAddOrganization}
-            /> 
+            />
           </CardBody>
         </Card>
       </PageSection>
-      <PageSection variant={PageSectionVariants.light}>Section with dark background</PageSection>
-      <PageSection variant={PageSectionVariants.light}>Section with light background</PageSection>
-    </Page>
+    </Spinner>
   );
 }

@@ -1,0 +1,14 @@
+.pf-c-wizard__main {
+    position: sticky
+}
+
+.MuiTypography-root.typography-centered {
+    display: flex;
+    justify-content: center;
+}
+
+.maps {
+    width: 28rem !important;
+    height: 10rem !important;
+}
+

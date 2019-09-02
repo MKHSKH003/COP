@@ -6,23 +6,23 @@ import {
   Card, CardBody,
 } from '@patternfly/react-core';
 
+import PageWrapper from '../../../shared/components/page-wrapper/page/component'
 import PageHeaderSection from '../../../shared/components/card-header'
-import NavBar from '../../../shared/components/navbar/page/component'
 
 const Feeds = ({
-  userName
+  isAdmin
 }) => {
   return (
-    <Page  header={<NavBar userName={userName} />} sidebar={''}>
-      <PageSection  variant={PageSectionVariants.light}>
+    <>
+      <PageSection variant={PageSectionVariants.light}>
         <Card className='mx-auto' >
-          <PageHeaderSection title={'Organization Events'} addTitle={'New Event'} />
+          <PageHeaderSection title={'Events'} addTitle={'New Event'} isAdmin={isAdmin}/>
           <CardBody ></CardBody>
         </Card>
       </PageSection>
       <PageSection variant={PageSectionVariants.light}>Section with dark background</PageSection>
       <PageSection variant={PageSectionVariants.light}>Section with light background</PageSection>
-    </Page>
+    </>
   );
 }
 

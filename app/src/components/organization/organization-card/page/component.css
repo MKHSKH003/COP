@@ -1,0 +1,14 @@
+.pf-c-button.pf-m-link.read-link-button {
+    color: red;
+}
+
+.MuiTypography-paragraph.maps {
+    contain: 'layout';
+    height: 10rem;
+    width: 28rem 
+}
+
+.MuiTypography-paragraph {
+    height: 10rem;
+    width: 28rem 
+}

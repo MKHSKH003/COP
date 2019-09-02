@@ -4,13 +4,8 @@ import {
   FormGroup,
   TextInput,
   TextArea,
-  FormSelectionOption,
   FormSelectOption,
-  FormSelect,
-  Checkbox,
-  ActionGroup,
-  Button,
-  Radio
+  FormSelect
 } from '@patternfly/react-core';
 
 export default ({

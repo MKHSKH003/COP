@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using COP.Models.Configuration;
 using COP.Services.Login;
+using COP.Services.Organisation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -47,6 +48,7 @@ namespace COP
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IOrganisationService, OrganisationService>();
             services.AddCors();
             services.AddMvc(options =>
             {
@@ -59,6 +61,7 @@ namespace COP
 
             services.AddSwaggerGen(c =>
             {
+                c.CustomSchemaIds(x => x.FullName);
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "1.0.0",
@@ -88,7 +91,9 @@ namespace COP
             app.UseHttpsRedirection();
 
             app.UseCors(
-                options => options.WithOrigins("http://localhost:8000","http://localhost:3000").AllowAnyMethod()
+                options => options.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
             );
             app.UseMvc();
             app.UseSwagger();
