@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using COP.Entities;
 
 namespace COP.Services.Organisation
@@ -17,7 +16,9 @@ namespace COP.Services.Organisation
 
         public IEnumerable<Entities.Organisation> Get()
         {
-            return _copDbContext.Organisation;
+            return _copDbContext.Organisations
+                .Include(o => o.Subscriptions)
+                .ToList();
         }
 
         public Entities.Organisation AddOrganisation(Models.Organisation organisation)
@@ -34,8 +35,22 @@ namespace COP.Services.Organisation
 
             _copDbContext.Add(dbNewOrganization);
             _copDbContext.SaveChanges();
-        
+
             return dbNewOrganization;
+        }
+
+        public Subscription AddSubscription(Subscription subscription)
+        {
+            var dbOrganizationSubscription = new Subscription()
+            {
+                OrganisationId = subscription.OrganisationId,
+                UserId = subscription.UserId
+            };
+
+            _copDbContext.Add(dbOrganizationSubscription);
+            _copDbContext.SaveChanges();
+
+            return dbOrganizationSubscription;
         }
     }
 }

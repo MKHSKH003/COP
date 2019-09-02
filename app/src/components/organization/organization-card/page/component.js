@@ -48,7 +48,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default ({
-  organization
+  user,
+  isUserLoggedIn,
+  organization,
+  addSubscription
 }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -64,7 +67,6 @@ export default ({
         <CardMedia
           className={classes.media}
           image={organization.Avatar}
-          title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -76,10 +78,13 @@ export default ({
         </CardContent>
       </CardActionArea>
       <CardActions disableSpacing>
-        <Button 
+        <Button
           className={'read-link-button'}
-          isDisabled={false} variant="link">
-            0{' Subscriptions'}
+          isDisabled={!isUserLoggedIn} 
+          variant="link"
+          onClick={() => addSubscription.execute({organisationId: organization.Id, userId: user.Id})}
+          >
+            {organization.Subscriptions.length}{' Subscriptions'}
         </Button>
         <IconButton
           className={clsx(classes.expand, {

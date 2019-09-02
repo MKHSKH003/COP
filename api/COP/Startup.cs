@@ -55,7 +55,7 @@ namespace COP
                 options.OutputFormatters.Clear();
                 options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings()
                 {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    //ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 }, ArrayPool<char>.Shared));
             });
 

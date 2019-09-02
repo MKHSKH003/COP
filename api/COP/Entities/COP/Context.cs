@@ -1,10 +1,6 @@
 ﻿using COP.Models.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace COP.Entities
 {
@@ -18,7 +14,8 @@ namespace COP.Entities
         }
 
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Organisation> Organisation { get; set; }
+        public virtual DbSet<Organisation> Organisations { get; set; }
+        public virtual DbSet<Subscription> Subscriptions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -83,6 +80,29 @@ namespace COP.Entities
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Subscription>(entity =>
+            {
+                entity.ToTable("Subscription", "ilXoGejTCZ");
+
+                entity.HasIndex(e => e.OrganisationId)
+                    .HasName("FK_Subscription_Organisation");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("FK_Subscription_User");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.OrganisationId)
+                    .HasColumnName("OrganisationID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasColumnType("int(11)");
             });
         }
     }

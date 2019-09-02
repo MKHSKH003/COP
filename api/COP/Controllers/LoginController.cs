@@ -16,7 +16,7 @@ namespace COP.Controllers
         }
 
         [HttpGet("authenticate-user")]
-        public ActionResult<User> Authentication([FromQuery] string username, [FromQuery] string password)
+        public ActionResult<Models.User> Authentication([FromQuery] string username, [FromQuery] string password)
         {
             return _loginService.Authentication(username, password);
         }

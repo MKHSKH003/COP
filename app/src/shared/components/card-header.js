@@ -8,7 +8,7 @@ import { PlusCircleIcon } from '@patternfly/react-icons'
 import logo from '../utils/logo/logo-only.svg';
 
 export default ({
-    isAdmin,
+    isUserLoggedIn,
     title,
     addTitle,
     setWizardVisible
@@ -20,7 +20,7 @@ export default ({
             <Title headingLevel="h1" size="4xl">
                 {title}
             </Title>
-            <Button isDisabled={!isAdmin} variant="link" icon={<PlusCircleIcon />} onClick={() => setWizardVisible(true)}>
+            <Button isDisabled={!isUserLoggedIn} variant="link" icon={<PlusCircleIcon />} onClick={() => setWizardVisible(true)}>
                 {addTitle}
             </Button>
         </Bullseye>

@@ -15,9 +15,16 @@ namespace COP.Services.Login
             _copDbContext = ticketSystemDbContext;
         }
 
-        public User Authentication(string email, string password)
+        public Models.User Authentication(string email, string password)
         {
-            return _copDbContext.Users.SingleOrDefault(user => user.Email == email && user.Password == password);
+           var dbUser = _copDbContext.Users.SingleOrDefault(user => user.Email == email && user.Password == password);
+
+            return new Models.User()
+            {
+                Id = dbUser.Id,
+                Name = dbUser.Name,
+                Email = dbUser.Email
+            };
         }
 
         public UserSignup Signup(string name, string email, string password)
@@ -35,7 +42,7 @@ namespace COP.Services.Login
             }
             else
             { 
-                var dbNewUser = new User()
+                var dbNewUser = new Entities.User()
                 {
                     Name = name,
                     Email = email,

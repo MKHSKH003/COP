@@ -21,11 +21,20 @@ namespace COP.Controllers
         {
             return _organisationService.Get();
         }
+
         [HttpPost("add-organisation")]
         public ActionResult<Entities.Organisation> AddOrganisation(Models.Organisation organisation)
         {
             return _organisationService.AddOrganisation(organisation);
         }
+
+        [HttpPost("add-subscription")]
+        public Subscription AddSubscription(Subscription subscription)
+        { 
+            return _organisationService.AddSubscription(subscription);
+        }
+
+
 
     }
 }

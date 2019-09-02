@@ -8,11 +8,12 @@ import {
 import { Spinner } from "react-bootstrap"
 
 export const LoginForm = ({
-    onUserLogin
+  onUserLogin,
+  setIsUserLoggedIn
 }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    
     return (
       <Form >  
         <FormGroup label="Email" isRequired fieldId="email">
