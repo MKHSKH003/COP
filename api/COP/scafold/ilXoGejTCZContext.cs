@@ -15,7 +15,7 @@ namespace COP.scafold
         {
         }
 
-        public virtual DbSet<Organisation> Organisation { get; set; }
+        public virtual DbSet<Subscription> Subscription { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,42 +28,27 @@ namespace COP.scafold
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Organisation>(entity =>
+            modelBuilder.Entity<Subscription>(entity =>
             {
-                entity.ToTable("Organisation", "ilXoGejTCZ");
+                entity.ToTable("Subscription", "ilXoGejTCZ");
+
+                entity.HasIndex(e => e.OrganizationId)
+                    .HasName("FK_Subscription_Organisation");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("FK_Subscription_User");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Avatar)
-                    .IsRequired()
-                    .HasColumnType("blob");
+                entity.Property(e => e.OrganizationId)
+                    .HasColumnName("OrganizationID")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Location)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.SocialIssue)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasColumnType("int(11)");
             });
         }
     }

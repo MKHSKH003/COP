@@ -12,11 +12,13 @@ import Wizard from '../wizard/page/component'
 import OrganizationCard from '../organization-card/page/component'
 
 export default ({
-  isAdmin,
+  isUserLoggedIn,
+  user,
   isAddOrganizationVisible,
   setAddOrgarnizationToggle,
   getOrganizations,
-  onAddOrganization
+  onAddOrganization,
+  addSubscription
 }) => {
   const [inProgress, setInProgress] = useState(false);
 
@@ -29,7 +31,12 @@ export default ({
         <Card className='mx-auto' >
           <CardBody >
             {getOrganizations.data.map((organization, key) =>
-              <OrganizationCard key={key} organization={organization} />
+              <OrganizationCard key={key}
+                isUserLoggedIn={isUserLoggedIn}
+                user={user}
+                organization={organization}
+                addSubscription={addSubscription}
+              />
             )}
             <Wizard
               modalheader={'Add Organization'}

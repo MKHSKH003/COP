@@ -13,6 +13,8 @@ import LoginForm from '../login'
 import PageWrapper from '../../../shared/components/page-wrapper/page/component'
 
 export const SignIn = ({
+  isUserLoggedIn,
+  user,
   onUserLogin,
   onUserSignup
 }) => {
@@ -21,9 +23,8 @@ export const SignIn = ({
   const signUpForAccountMessage = (
       <LoginMainFooterBandItem>
         {loginToggle ? 'Need an account?' : 'Already have an account?'} 
-        <a href="#" onClick={ () => loginToggle 
-            ? setLoginToggle(false) 
-            : setLoginToggle(true) }> {loginToggle ? 'Sign up' : 'Login'}
+        <a href="#" onClick={ () => setLoginToggle(!loginToggle)}> 
+          {loginToggle ? 'Sign up' : 'Login'}
         </a>
       </LoginMainFooterBandItem>
   );
@@ -52,7 +53,10 @@ export const SignIn = ({
             : <SignUpForm onUserSignup={onUserSignup} />
           }
         </LoginPage>
-      : <PageWrapper userName={onUserLogin.data.Name}/>
+      : <PageWrapper 
+          user={user}
+          isUserLoggedIn={isUserLoggedIn}
+        />
   );
 }
 

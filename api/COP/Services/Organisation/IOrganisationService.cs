@@ -6,5 +6,6 @@ namespace COP.Services.Organisation
     {
         Entities.Organisation AddOrganisation(Models.Organisation organisation);
         IEnumerable<Entities.Organisation> Get();
+        Entities.Subscription AddSubscription(Entities.Subscription subscription);
     }
 }

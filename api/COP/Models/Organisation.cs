@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace COP.Models
+﻿namespace COP.Models
 {
     public partial class Organisation
     {

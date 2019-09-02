@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 
+import appsettings from '../../../../../package.json'
+
 export class MapContainer extends Component {
   render() {    
     const getLocationCordinates = (location) =>{
@@ -35,5 +37,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBURgGZ-uZWId-6qeleDUIDNylozQaAY0w'
+  apiKey: appsettings.MapsApiKey
 })(MapContainer)

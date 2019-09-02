@@ -10,3 +10,13 @@ export const postOrganization = async (baseUrl, organization) =>
             'Content-Type': 'application/json'
     }
     }).then((response) => response.json())
+
+export const postSubscription = async (baseUrl, subscription) =>   
+    fetch(baseUrl+'add-subscription',
+    {
+        method: 'POST',
+        body: JSON.stringify(subscription),
+        headers: {
+            'Content-Type': 'application/json'
+    }
+    }).then((response) => response.json())

@@ -10,13 +10,13 @@ import PageWrapper from '../../../shared/components/page-wrapper/page/component'
 import PageHeaderSection from '../../../shared/components/card-header'
 
 const Feeds = ({
-  isAdmin
+  isUserLoggedIn
 }) => {
   return (
     <>
       <PageSection variant={PageSectionVariants.light}>
         <Card className='mx-auto' >
-          <PageHeaderSection title={'Events'} addTitle={'New Event'} isAdmin={isAdmin}/>
+          <PageHeaderSection title={'Events'} addTitle={'New Event'} isUserLoggedIn={isUserLoggedIn}/>
           <CardBody ></CardBody>
         </Card>
       </PageSection>

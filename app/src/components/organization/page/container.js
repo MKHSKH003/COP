@@ -9,9 +9,10 @@ import { organizationBaseUrl } from '../../../shared/constants/api-selectors'
 import Organization from './component';
 
 export default ({
-    isAdmin,
+    isUserLoggedIn,
     isAddOrganizationVisible,
-    setAddOrgarnizationToggle
+    setAddOrgarnizationToggle,
+    user
 }) => {
     const getOrganizations = useApi({
         action: () => organizationApi.getOrganizations(organizationBaseUrl),
@@ -30,13 +31,31 @@ export default ({
         onError: (e) => toast.error(e.message)
     }, []);
     
+    const addSubscription = useApi({
+        action: subscription => organizationApi.postSubscription(organizationBaseUrl, subscription),
+        initialValue: [],
+        defer: true,
+        onSuccess: subscription => {
+            getOrganizations.setData(getOrganizations.data.map(o => (
+                o.Id == subscription.OrganisationId ? {
+                    ...o,
+                    Subscriptions: o.Subscriptions.concat(subscription)
+                } : o
+            )));
+            toast.success('Subscribed successfully.');
+        },
+        onError: (e) => toast.error(e.message)
+    }, []);
+
     return ( 
         <Organization  
-            isAdmin
+            isUserLoggedIn={isUserLoggedIn}
+            user={user}
             isAddOrganizationVisible={isAddOrganizationVisible}
             setAddOrgarnizationToggle={setAddOrgarnizationToggle}
             getOrganizations={getOrganizations}
-            onAddOrganization={postOrganization} 
+            onAddOrganization={postOrganization}
+            addSubscription={addSubscription} 
         />
     );
 };
