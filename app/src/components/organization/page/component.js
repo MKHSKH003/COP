@@ -24,7 +24,7 @@ export default ({
 
   return (
     <Spinner
-      isLoading={inProgress || onAddOrganization.inProgress}
+      isLoading={getOrganizations.inProgress || inProgress || onAddOrganization.inProgress}
       text='Loading organizations...'
     >
       <PageSection variant={PageSectionVariants.light}>
