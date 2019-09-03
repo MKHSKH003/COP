@@ -12,3 +12,8 @@
     height: 10rem;
     width: 28rem 
 }
+
+.MuiTypography-root.maps.MuiTypography-body1.MuiTypography-paragraph {
+    contain: content;
+    width: auto !important;
+}

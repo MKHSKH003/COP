@@ -49,6 +49,7 @@ namespace COP
 
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IOrganisationService, OrganisationService>();
+            services.AddScoped<IEventService, EventService>();
             services.AddCors();
             services.AddMvc(options =>
             {

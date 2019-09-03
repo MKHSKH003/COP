@@ -2,17 +2,17 @@ import firebase from 'firebase';
 
 import appsettings from '../../../package.json'
 
-export const uploadAndGetImageUrl = async (organization, onAddOrganization, setInProgress) => {
+export const uploadAndGetImageUrl = async (object, onAddObject, setInProgress) => {
     setInProgress(true)
     if (!firebase.apps.length) {
       firebase.initializeApp(appsettings.FirebaseConfig);
     }
     
     var ref = firebase.storage().ref().child("images/COP/" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
-    const snapshot = await ref.put(b64toBlob(organization.avatar));
+    const snapshot = await ref.put(b64toBlob(object.avatar));
 
-    onAddOrganization.execute({
-      ...organization,
+    onAddObject.execute({
+      ...object,
       avatar: await snapshot.ref.getDownloadURL()
     });
     setInProgress(false);

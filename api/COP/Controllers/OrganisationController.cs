@@ -32,8 +32,5 @@ namespace COP.Controllers
         { 
             return _organisationService.AddSubscription(subscription);
         }
-
-
-
     }
 }

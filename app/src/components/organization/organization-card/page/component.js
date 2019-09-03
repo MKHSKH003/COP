@@ -23,12 +23,11 @@ import GoogleMaps from '../google-maps/component'
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: '30rem',
     'margin-bottom': '1rem'
   },
   media: {
-    height: '15rem',
-    width: '35rem',
+    height: '20rem',
+    width: '45rem',
     display: 'table-cell',
     'background-size': 'cover'
   },
@@ -82,7 +81,10 @@ export default ({
           className={'read-link-button'}
           isDisabled={!isUserLoggedIn} 
           variant="link"
-          onClick={() => addSubscription.execute({organisationId: organization.Id, userId: user.Id})}
+          onClick={() => {
+              organization.Subscriptions.filter(s => s.UserId === user.Id).length === 0 
+              && addSubscription.execute({organisationId: organization.Id, userId: user.Id})
+            }}
           >
             {organization.Subscriptions.length}{' Subscriptions'}
         </Button>

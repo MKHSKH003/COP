@@ -6,38 +6,52 @@ import {
   PageHeader, Page, Dropdown, DropdownToggle, DropdownItem, DropdownPosition,
   Nav, NavItem, NavList, NavVariants,
 } from '@patternfly/react-core';
-import { UserIcon, PrivateIcon, OrdersIcon, PlusCircleIcon } from '@patternfly/react-icons'
+import { UserIcon, PrivateIcon, PlusCircleIcon } from '@patternfly/react-icons'
 
 import brandImg from '../../../utils/logo/full.png';
-import logo from '../../../utils/logo/logo-only.svg';
-import Events from '../../../../components/events/page/component';
+import Events from '../../../../components/events/page/container';
 import Organizations from "../../../../components/organization/page/container";
 import Login from "../../../../components/login/page/container";
 
 export default ({
   user,
-  children,
   isUserLoggedIn
 }) => {
   const [isNavOpen, onNavToggle] = useState(false);
-  const [isDropdownOpen, onDropdownToggle] = useState(false);
+  const [isOrganizationalDropdownOpen, onOrganizationalDropdownToggle] = useState(false);
+  const [isEventDropdownOpen, onEventDropdownToggle] = useState(false);
+  const [isAddEventVisible, setAddEventToggle] = useState(false);
   const [isAddOrganizationVisible, setAddOrgarnizationToggle] = useState(false);
   const [activeNavItem, setActiveNavItem] = useState({ events: true })
+
   const logoProps = (
     <a className="navbar-brand" href="/">
       <img src={brandImg} alt="COP Enterprise Application" />
     </a>
   );
 
-  const dropDown = (
+  const organizationsDropDown = (
     <Dropdown
       position={DropdownPosition.right}
-      toggle={<DropdownToggle onToggle={() => onDropdownToggle(!isDropdownOpen)}>Organizations</DropdownToggle>}
-      isOpen={isDropdownOpen}
+      toggle={<DropdownToggle onToggle={() => onOrganizationalDropdownToggle(!isOrganizationalDropdownOpen)}>Organizations</DropdownToggle>}
+      isOpen={isOrganizationalDropdownOpen}
       isPlain
       dropdownItems={[
         <DropdownItem key='add' isDisabled={!isUserLoggedIn} onClick={() => setAddOrgarnizationToggle(true)}>
-          <PlusCircleIcon /> organization 
+          <PlusCircleIcon /> organization
+        </DropdownItem>,
+      ]}
+    />)
+
+  const eventsDropDown = (
+    <Dropdown
+      position={DropdownPosition.right}
+      toggle={<DropdownToggle onToggle={() => onEventDropdownToggle(!isEventDropdownOpen)}>Events</DropdownToggle>}
+      isOpen={isEventDropdownOpen}
+      isPlain
+      dropdownItems={[
+        <DropdownItem key='add' isDisabled={!isUserLoggedIn} onClick={() => setAddEventToggle(true)}>
+          <PlusCircleIcon /> event
         </DropdownItem>,
       ]}
     />)
@@ -48,13 +62,13 @@ export default ({
         <NavItem
           onClick={() => setActiveNavItem({ events: true })}
           isActive={activeNavItem.events && true}
-        > Events <OrdersIcon />
+        >{eventsDropDown}
         </NavItem>
 
-        <NavItem 
-            onClick={() => setActiveNavItem({ organizations: true })}
-            isActive={activeNavItem.organizations && true}
-        > {dropDown}
+        <NavItem
+          onClick={() => setActiveNavItem({ organizations: true })}
+          isActive={activeNavItem.organizations && true}
+        > {organizationsDropDown}
         </NavItem>
 
         {isUserLoggedIn &&
@@ -83,17 +97,22 @@ export default ({
     activeNavItem.login
       ? <Login />
       : <Page header={pageHeader} >
-          {activeNavItem.events && 
-            <Events isUserLoggedIn />
-          }
-          {activeNavItem.organizations &&
-            <Organizations
-              isAddOrganizationVisible={isAddOrganizationVisible}
-              setAddOrgarnizationToggle={setAddOrgarnizationToggle}
-              isUserLoggedIn={isUserLoggedIn}
-              user={user}
-            />
-          }
-        </Page>
+        {activeNavItem.events &&
+          <Events 
+            isAddEventVisible={isAddEventVisible}
+            setAddEventToggle={setAddEventToggle}
+            isUserLoggedIn={isUserLoggedIn}
+            user={user}
+          />
+        }
+        {activeNavItem.organizations &&
+          <Organizations
+            isAddOrganizationVisible={isAddOrganizationVisible}
+            setAddOrgarnizationToggle={setAddOrgarnizationToggle}
+            isUserLoggedIn={isUserLoggedIn}
+            user={user}
+          />
+        }
+      </Page>
   );
 }
