@@ -16,7 +16,7 @@ export default ({
     onAddOrganization
 }) => {
     const [ organization, setOrganization ] = useState({
-      avatar:'http://www.pngall.com/wp-content/uploads/2/Upload-PNG-Image-File.png',
+      avatar:'',
       name:'',
       email:'',
       socialIssue:'',
@@ -29,7 +29,7 @@ export default ({
                 readImageURL(file.target, organization, setOrganization)
               }}
             />
-            <img alt='COP-avatar' src={organization.avatar} className="wrap button" />
+            <img alt='organization-avatar' src={organization.avatar.length > 0 ? organization.avatar : 'http://www.pngall.com/wp-content/uploads/2/Upload-PNG-Image-File.png'} className="wrap button" />
         </label>
     )
 
@@ -52,8 +52,16 @@ export default ({
           description="Please fill in organization details in each step."
           steps={steps}
           onSave={() => {
-              uploadAndGetImageUrl(organization, onAddOrganization, setInProgress);
-              setAddOrgarnizationToggle(false)
+             if(   organization.avatar.length > 0
+                && organization.description.length > 0
+                && organization.email.length > 0
+                && organization.socialIssue.length > 0
+                && organization.name.length > 0
+                && organization.location.length > 0)
+              {
+                uploadAndGetImageUrl(organization, onAddOrganization, setInProgress);
+                setAddOrgarnizationToggle(false)
+             }
             }
           }
         />

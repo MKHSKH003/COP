@@ -2,11 +2,10 @@ import './component.css'
 
 import React, { useState } from 'react';
 import {
-  Page, PageSection, PageSectionVariants,
+  PageSection, PageSectionVariants,
   Card, CardBody
 } from '@patternfly/react-core';
 
-import CardHeader from '../../../shared/components/card-header'
 import Spinner from '../../../shared/components/spinner/component'
 import Wizard from '../wizard/page/component'
 import OrganizationCard from '../organization-card/page/component'

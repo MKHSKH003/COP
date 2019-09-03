@@ -25,7 +25,7 @@ export default ({
         initialValue: [],
         defer: true,
         onSuccess: organization => {
-             getOrganizations.setData(getOrganizations.data.concat(organization));
+             getOrganizations.setData(([organization]).concat(getOrganizations.data));
              toast.success('Organization '+organization.Name+' was successfully added');
         },
         onError: (e) => toast.error(e.message)

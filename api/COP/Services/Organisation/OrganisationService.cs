@@ -18,6 +18,7 @@ namespace COP.Services.Organisation
         {
             return _copDbContext.Organisations
                 .Include(o => o.Subscriptions)
+                .OrderByDescending(e => e.Id)
                 .ToList();
         }
 
