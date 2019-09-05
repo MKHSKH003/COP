@@ -4,6 +4,5 @@
 /api/COP/bin
 /api/COP/obj
 /app/*.log
-/app/build
 /api/build
 /api/COP/Properties

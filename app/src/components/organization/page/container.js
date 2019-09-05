@@ -12,7 +12,8 @@ export default ({
     isUserLoggedIn,
     isAddOrganizationVisible,
     setAddOrgarnizationToggle,
-    user
+    user,
+    searchKey
 }) => {
     const getOrganizations = useApi({
         action: () => organizationApi.getOrganizations(organizationBaseUrl),
@@ -56,6 +57,7 @@ export default ({
             getOrganizations={getOrganizations}
             onAddOrganization={postOrganization}
             addSubscription={addSubscription} 
+            searchKey={searchKey}
         />
     );
 };

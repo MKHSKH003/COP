@@ -92,7 +92,7 @@ namespace COP
             app.UseHttpsRedirection();
 
             app.UseCors(
-                options => options.WithOrigins("http://18.221.169.195:3000")
+                options => options.WithOrigins("http://18.221.169.195:3000", "http://localhost:3000")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
             );

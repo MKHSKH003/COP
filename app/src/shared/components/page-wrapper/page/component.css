@@ -5,3 +5,16 @@
 .pf-c-dropdown__toggle {
     padding: unset !important
 }
+
+.pf-c-form-control.pf-c-nav__link {
+    margin-bottom: 5px
+}
+
+.pf-c-nav__horizontal-list-link {
+    padding-bottom: unset !important;
+}
+
+.pf-c-nav {
+--pf-c-nav__horizontal-list-link--PaddingBottom: unset !important;
+--pf-c-nav__horizontal-list-link--PaddingTop: unset !important;
+}

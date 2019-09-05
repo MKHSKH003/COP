@@ -13,6 +13,7 @@ import EventCard from '../event-card/page/component'
 const Feeds = ({
   isUserLoggedIn,
   user,
+  searchKey,
   isAddEventVisible,
   setAddEventToggle,
   getOrganizations,
@@ -30,6 +31,7 @@ const Feeds = ({
         <Card className='mx-auto' >
           <CardBody >
           {getEvents.data.map((event, key) =>
+              (event.Name).toLowerCase().includes(searchKey.toLowerCase()) &&
               <EventCard 
                 key={key}
                 isUserLoggedIn={isUserLoggedIn}

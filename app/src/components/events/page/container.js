@@ -12,7 +12,8 @@ export default ({
     isUserLoggedIn,
     isAddEventVisible,
     setAddEventToggle,
-    user
+    user,
+    searchKey
 }) => {
     const getEvents = useApi({
         action: () => eventApi.getEvents(eventBaseUrl),
@@ -41,6 +42,7 @@ export default ({
         <Event  
             isUserLoggedIn={isUserLoggedIn}
             user={user}
+            searchKey={searchKey}
             isAddEventVisible={isAddEventVisible}
             setAddEventToggle={setAddEventToggle}
             getEvents={getEvents}
