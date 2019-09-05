@@ -13,6 +13,7 @@ import OrganizationCard from '../organization-card/page/component'
 export default ({
   isUserLoggedIn,
   user,
+  searchKey,
   isAddOrganizationVisible,
   setAddOrgarnizationToggle,
   getOrganizations,
@@ -20,7 +21,6 @@ export default ({
   addSubscription
 }) => {
   const [inProgress, setInProgress] = useState(false);
-
   return (
     <Spinner
       isLoading={getOrganizations.inProgress || inProgress || onAddOrganization.inProgress}
@@ -30,7 +30,10 @@ export default ({
         <Card className='mx-auto' >
           <CardBody >
             {getOrganizations.data.map((organization, key) =>
-              <OrganizationCard key={key}
+              ((organization.Name).toLowerCase().includes(searchKey.toLowerCase()) 
+              || (organization.SocialIssue).toLowerCase().includes(searchKey.toLowerCase())) && 
+              <OrganizationCard 
+                key={key}
                 isUserLoggedIn={isUserLoggedIn}
                 user={user}
                 organization={organization}

@@ -4,7 +4,7 @@ import './component.css'
 import React, { useState } from 'react';
 import {
   PageHeader, Page, Dropdown, DropdownToggle, DropdownItem, DropdownPosition,
-  Nav, NavItem, NavList, NavVariants,
+  Nav, NavItem, NavList, NavVariants, TextInput
 } from '@patternfly/react-core';
 import { UserIcon, PrivateIcon, PlusCircleIcon } from '@patternfly/react-icons'
 
@@ -23,6 +23,7 @@ export default ({
   const [isAddEventVisible, setAddEventToggle] = useState(false);
   const [isAddOrganizationVisible, setAddOrgarnizationToggle] = useState(false);
   const [activeNavItem, setActiveNavItem] = useState({ events: true })
+  const [searchKey, onSearch] = useState('');
 
   const logoProps = (
     <a className="navbar-brand" href="/">
@@ -43,22 +44,37 @@ export default ({
       ]}
     />)
 
-  const eventsDropDown = (
-    <Dropdown
-      position={DropdownPosition.right}
-      toggle={<DropdownToggle onToggle={() => onEventDropdownToggle(!isEventDropdownOpen)}>Events</DropdownToggle>}
-      isOpen={isEventDropdownOpen}
-      isPlain
-      dropdownItems={[
-        <DropdownItem key='add' isDisabled={!isUserLoggedIn} onClick={() => setAddEventToggle(true)}>
-          <PlusCircleIcon /> event
-        </DropdownItem>,
-      ]}
-    />)
+const eventsDropDown = (
+  <Dropdown
+    position={DropdownPosition.right}
+    toggle={<DropdownToggle onToggle={() => onEventDropdownToggle(!isEventDropdownOpen)}>Events</DropdownToggle>}
+    isOpen={isEventDropdownOpen}
+    isPlain
+    dropdownItems={[
+      <DropdownItem key='add' isDisabled={!isUserLoggedIn} onClick={() => setAddEventToggle(true)}>
+        <PlusCircleIcon /> event
+      </DropdownItem>,
+    ]}
+  />)
 
+  const seach = (
+      <TextInput
+        value={searchKey}
+        isRequired
+        type="text"
+        id="horizontal-form-name"
+        aria-describedby="horizontal-form-name-helper"
+        name="horizontal-form-name"
+        onChange={value => onSearch(value)}
+      />
+  )
+  
   const nav = (
     <Nav >
       <NavList className='pull-right' variant={NavVariants.horizontal}>
+        <NavItem>
+          {seach}
+        </NavItem>
         <NavItem
           onClick={() => setActiveNavItem({ events: true })}
           isActive={activeNavItem.events && true}
@@ -99,6 +115,7 @@ export default ({
       : <Page header={pageHeader} >
         {activeNavItem.events &&
           <Events 
+            searchKey={searchKey}
             isAddEventVisible={isAddEventVisible}
             setAddEventToggle={setAddEventToggle}
             isUserLoggedIn={isUserLoggedIn}
@@ -107,6 +124,7 @@ export default ({
         }
         {activeNavItem.organizations &&
           <Organizations
+            searchKey={searchKey}
             isAddOrganizationVisible={isAddOrganizationVisible}
             setAddOrgarnizationToggle={setAddOrgarnizationToggle}
             isUserLoggedIn={isUserLoggedIn}

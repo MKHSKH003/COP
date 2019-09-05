@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
     'margin-bottom': '1rem'
   },
   media: {
-    height: '20rem',
-    width: '45rem',
+    height: '25rem',
+    width: '40rem',
     display: 'table-cell',
     'background-size': 'cover'
   },

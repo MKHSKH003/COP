@@ -74,7 +74,10 @@ export default ({
         title="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography className='typography-centered' gutterBottom variant="h5" component="h2">
+            {event.Name}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" className='typography-centered' component="p">
           {event.Description}
         </Typography>
         <br/>
