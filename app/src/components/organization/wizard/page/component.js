@@ -55,6 +55,7 @@ export default ({
           onSave={() => {
              if(   organization.avatar.length > 0
                 && organization.description.length > 0
+                && organization.description.website > 0
                 && organization.email.length > 0
                 && organization.socialIssue.length > 0
                 && organization.name.length > 0
