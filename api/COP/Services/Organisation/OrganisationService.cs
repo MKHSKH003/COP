@@ -31,6 +31,7 @@ namespace COP.Services.Organisation
                 Email = organisation.Email,
                 SocialIssue = organisation.SocialIssue,
                 Description = organisation.Description,
+                Website = organisation.Website,
                 Location = organisation.Location
             };
 

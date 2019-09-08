@@ -71,6 +71,19 @@ export default ({
             ))}
           </FormSelect>
         </FormGroup>
+        <FormGroup label="Debsite e.g google.com" isRequired fieldId="horizontal-form-website">
+          <TextInput
+            value={organization.website}
+            onChange={value => setOrganization({
+              ...organization, 
+              website: value
+            })}
+            isRequired
+            type="text"
+            id="horizontal-form-website"
+            name="horizontal-form-website"
+          />
+        </FormGroup>
         <FormGroup label="Description" fieldId="horizontal-form-exp">
           <TextArea
             value={organization.description}

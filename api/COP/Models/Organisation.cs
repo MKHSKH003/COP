@@ -7,6 +7,7 @@
         public string Email { get; set; }
         public string SocialIssue { get; set; }
         public string Description { get; set; }
+        public string Website { get; set; }
         public string Location { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace COP.Entities
         public string Email { get; set; }
         public string SocialIssue { get; set; }
         public string Description { get; set; }
+        public string Website { get; set; }
         public string Location { get; set; }
 
         public IEnumerable<Subscription> Subscriptions { get; set; }

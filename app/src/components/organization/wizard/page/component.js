@@ -20,6 +20,7 @@ export default ({
       name:'',
       email:'',
       socialIssue:'',
+      website:'',
       description:'',
       location:''
     })
