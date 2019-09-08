@@ -16,8 +16,10 @@
 .MuiTypography-root.maps.MuiTypography-body1.MuiTypography-paragraph {
     contain: content;
     width: auto !important;
-}
-
-.MuiPaper-root.MuiPaper-elevation1.MuiCard-root.makeStyles-card-107.MuiPaper-rounded{
     max-width: 41rem;
 }
+
+.MuiCardActionArea-root {
+    max-width: 41rem !important;
+}
+

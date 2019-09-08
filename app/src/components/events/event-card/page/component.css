@@ -5,3 +5,11 @@
 .event-avatar {
     height: inherit;
 }
+
+.pf-c-page__main-section.pf-m-light {
+    --pf-c-page__main-section--BackgroundColor: unset
+}
+
+.pf-c-card {
+    --pf-c-card--BackgroundColor:  unset
+}

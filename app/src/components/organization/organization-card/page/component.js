@@ -23,7 +23,8 @@ import GoogleMaps from '../google-maps/component'
 
 const useStyles = makeStyles(theme => ({
   card: {
-    'margin-bottom': '1rem'
+    'margin-bottom': '1rem',
+    'max-width': '40rem'
   },
   media: {
     height: '25rem',
@@ -59,6 +60,7 @@ export default ({
     setExpanded(!expanded);
   }
 
+  console.log('organization', organization);
   return (
     <Bullseye>
     <Card className={classes.card}>
@@ -69,7 +71,7 @@ export default ({
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {organization.Name}
+            <a href={'https://'+organization.Website} target="_blank" >{organization.Name} </a>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {organization.Description}
@@ -80,7 +82,7 @@ export default ({
         <Button
           className={'read-link-button'}
           isDisabled={!isUserLoggedIn} 
-          variant="link"
+          variant="danger"
           onClick={() => {
               organization.Subscriptions.filter(s => s.UserId === user.Id).length === 0 
               && addSubscription.execute({organisationId: organization.Id, userId: user.Id})
