@@ -67,7 +67,7 @@ export default ({
             <MoreVertIcon />
           </IconButton>
         }
-        title={event.organisation.Name}
+        title={<a href={'https://'+event.organisation.Website} target="_blank" >{event.organisation.Name } </a>}
         subheader={event.AddedDate}
       />
       <CardMedia
