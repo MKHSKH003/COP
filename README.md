@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/MKHSKH003/COP/blob/master/app/readme%20screenshots/login.PNG?raw=true)
 
-# SINUP
+# SIGN UP
 
 ![alt text](https://github.com/MKHSKH003/COP/blob/master/app/readme%20screenshots/singup.PNG?raw=true)
 
